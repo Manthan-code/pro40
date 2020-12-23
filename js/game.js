@@ -37,23 +37,19 @@ class Game{
     
     play(){
         
-                form.hide()
+                form.hide();
 
                 Player.getPlayerInfo();
-
                  image(back_img, 0, 0, 1000, 800);
                  var x =100;
                  var y=200;
                  var index =0;
-                
-
-
                  drawSprites();
                  for(var plr in allPlayers){
                     
                     
                      index = index+1;
-                     x = 500-allPlayers[plr];
+                     x = 500-allPlayers[plr].distance;
                      y=500;
                      
                      players[index -1].x = x;
@@ -103,9 +99,17 @@ class Game{
                      fruitGroup.add(fruits);
                      
                  }
+
+                
                  
                   if (player.index !== null) {
+                      for(var i=0 ; i<fruitGroup.length;i++){
                      //fill code here, to destroy the objects.
+                     if(fruitGroup.get(i).isTouching(players)){
+                        fruitGroup.get(i).destroy();
+
+                     }}
+                        
                   }
                 
 
